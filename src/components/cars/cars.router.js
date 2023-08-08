@@ -11,9 +11,7 @@ carsRouter.get("/:carId", (_req, res) => {
   res.send("Get a single car");
 });
 
-carsRouter.post("/", (_req, res) => {
-  res.send("Creating a new car");
-});
+carsRouter.post("/", controller.registerCar);
 
 carsRouter.put("/:carId", (_req, res) => {
   res.send("Replace a car");
