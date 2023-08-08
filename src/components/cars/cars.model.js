@@ -5,7 +5,7 @@ const CarModel = sequelize.define(
   "Car",
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    plate: { type: DataTypes.STRING, comment: "Matricula" },
+    plate: { type: DataTypes.STRING, comment: "Matricula", unique: "uniquePlate" },
   },
 );
 

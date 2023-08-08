@@ -1,6 +1,4 @@
-// import sequelize from "../../../db.js";
 import CarModel from "./cars.model.js";
-
 
 export function registerCar(plate) {
   return CarModel.create({ plate });
