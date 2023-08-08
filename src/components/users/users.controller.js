@@ -2,7 +2,7 @@
 
 import * as service from "./users.service.js";
 
-export function registerUser(req, res) {
+export async function registerUser(req, res) {
   const { email, password } = req.body;
 
   try {
@@ -13,8 +13,8 @@ export function registerUser(req, res) {
   }
 }
 
-export function login(req, res) {
+export async function login(req, res) {
   const { email, password } = req.body;
-  const token = service.login(email, password);
-  res.status(200).end();
+  const token = await service.login(email, password);
+  res.status(200).send(token);
 }

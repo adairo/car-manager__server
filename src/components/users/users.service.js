@@ -1,5 +1,6 @@
 // @ts-check
 
+import { createToken } from "../../lib/auth.js";
 import * as database from "./users.database.js";
 
 export async function registerUser(email, password) {
@@ -21,4 +22,11 @@ export async function login(email, password) {
   if (password !== savedPassword) {
     throw new Error("Invalid credentials");
   }
+
+  const token = createToken({
+    id: user.get("id"),
+    email: user.get("email"),
+  });
+
+  return token;
 }

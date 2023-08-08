@@ -1,6 +1,6 @@
 // @ts-check
 
-import sequelize from "../../../db.js";
+import sequelize from "../../lib/db.js";
 import { DataTypes } from "sequelize";
 
 const UserModel = sequelize.define("User", {
