@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
-  "postgres://postgres:spore@localhost:5432/spore-start"
+  "postgres://postgres:spore@localhost:5432/spore-start",
 );
 
 /* try {

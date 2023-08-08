@@ -1,7 +1,7 @@
 // @ts-check
 
 import express from "express";
-import * as controller from "./cars.controller.js"
+import * as controller from "./cars.controller.js";
 
 const carsRouter = express.Router();
 
@@ -17,6 +17,6 @@ carsRouter.put("/:carId", (_req, res) => {
 
 carsRouter.patch("/:carId", controller.updateCar);
 
-carsRouter.delete("/:carId", controller.deleteCar)
+carsRouter.delete("/:carId", controller.deleteCar);
 
 export default carsRouter;
