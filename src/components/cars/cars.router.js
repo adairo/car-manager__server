@@ -17,4 +17,6 @@ carsRouter.put("/:carId", (_req, res) => {
 
 carsRouter.patch("/:carId", controller.updateCar);
 
+carsRouter.delete("/:carId", controller.deleteCar)
+
 export default carsRouter;

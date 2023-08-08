@@ -7,17 +7,24 @@ export function getAllCars() {
 }
 
 export async function getCar(carId) {
-  const car = await database.getCar(carId)
+  // returns null when no car was found
+  const car = await database.getCar(carId);
   if (!car) {
-    throw new Error("No se encontró el auto con ese id")
+    throw new Error("Invalid car id");
   }
 
   return car;
 }
 
-// should we first check that the car exists? 
+// should we first check that the car exists?
 export async function updateCar(carId, carData) {
-  return database.updateCar(carId, carData)
+  const _carToUpdate = await getCar(carId);
+  return database.updateCar(carId, carData);
+}
+
+export async function deleteCar(carId) {
+  const _carToDelete = await getCar(carId);
+  return database.deleteCar(carId);
 }
 
 export async function registerCar(plate) {

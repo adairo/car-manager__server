@@ -18,7 +18,7 @@ export async function getCar(req, res) {
 
 export async function updateCar(req, res) {
   const carData = req.body;
-  const carId = req.params.carId
+  const carId = req.params.carId;
   try {
     const updatedCar = await service.updateCar(carId, carData);
     res.status(200).send(updatedCar);
@@ -31,4 +31,10 @@ export async function registerCar(req, res) {
   const plate = req.body.plate;
   const car = await service.registerCar(plate);
   res.status(201).send(car.toJSON());
+}
+
+export async function deleteCar(req, res) {
+  const carId = req.params.carId;
+  await service.deleteCar(carId);
+  res.status(200).end();
 }
