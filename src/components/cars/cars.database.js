@@ -8,13 +8,8 @@ export function getAllCars() {
   return CarModel.findAll({ attributes: ["id", "plate"] });
 }
 
-export function getCar(id) {
-  return CarModel.findAll({
-    where: {
-      id,
-    },
-    attributes: ["id", "plate"],
-  });
+export function getCar(carId) {
+  return CarModel.findByPk(carId, {attributes: ["id", "plate", "createdAt"]})
 }
 
 export function updateCar(id, plate) {

@@ -7,9 +7,7 @@ const carsRouter = express.Router();
 
 carsRouter.get("/", controller.getAllCars);
 
-carsRouter.get("/:carId", (_req, res) => {
-  res.send("Get a single car");
-});
+carsRouter.get("/:carId", controller.getCar);
 
 carsRouter.post("/", controller.registerCar);
 
