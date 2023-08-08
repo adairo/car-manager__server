@@ -15,8 +15,6 @@ carsRouter.put("/:carId", (_req, res) => {
   res.send("Replace a car");
 });
 
-carsRouter.patch("/:carId", (_req, res) => {
-  res.send("Updating a car");
-});
+carsRouter.patch("/:carId", controller.updateCar);
 
 export default carsRouter;

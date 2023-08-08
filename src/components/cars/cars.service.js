@@ -15,6 +15,11 @@ export async function getCar(carId) {
   return car;
 }
 
+// should we first check that the car exists? 
+export async function updateCar(carId, carData) {
+  return database.updateCar(carId, carData)
+}
+
 export async function registerCar(plate) {
   return database.registerCar(plate);
 }

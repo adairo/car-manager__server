@@ -9,16 +9,15 @@ export function getAllCars() {
 }
 
 export function getCar(carId) {
-  return CarModel.findByPk(carId, {attributes: ["id", "plate", "createdAt"]})
+  return CarModel.findByPk(carId, { attributes: ["id", "plate", "createdAt"] });
 }
 
-export function updateCar(id, plate) {
-  return CarModel.update(
-    {
-      plate,
-    },
-    { where: id }
-  );
+export async function updateCar(carId, carData) {
+  const [_affectedRows, [updatedCar]] = await CarModel.update(carData, {
+    where: { id: carId },
+    returning: ["id", "plate"],
+  });
+  return updatedCar;
 }
 
 export function deleteCar(id) {
