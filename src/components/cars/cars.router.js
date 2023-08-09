@@ -2,6 +2,8 @@
 
 import express from "express";
 import * as controller from "./cars.controller.js";
+import * as schema from "./cars.schema.js";
+import { validate } from "../../lib/validate.js";
 
 const carsRouter = express.Router();
 
@@ -53,7 +55,7 @@ carsRouter.get("/", controller.getAllCars);
  *         description: Plate already registered
  *
  */
-carsRouter.post("/", controller.registerCar);
+carsRouter.post("/", validate(schema.registerCar), controller.registerCar);
 
 /**
  * @swagger
@@ -83,7 +85,7 @@ carsRouter.post("/", controller.registerCar);
  *         description: Car does not exist
  *
  */
-carsRouter.get("/:carId", controller.getCar);
+carsRouter.get("/:carId", validate(schema.getCar), controller.getCar);
 
 /**
  * @swagger
@@ -124,7 +126,7 @@ carsRouter.get("/:carId", controller.getCar);
  *         description: Car does not exist
  *
  */
-carsRouter.patch("/:carId", controller.updateCar);
+carsRouter.patch("/:carId", validate(schema.updateCar), controller.updateCar);
 
 /**
  * @swagger
@@ -150,6 +152,6 @@ carsRouter.patch("/:carId", controller.updateCar);
  *         description: Car does not exist
  *
  */
-carsRouter.delete("/:carId", controller.deleteCar);
+carsRouter.delete("/:carId", validate(schema.deleteCar), controller.deleteCar);
 
 export default carsRouter;
