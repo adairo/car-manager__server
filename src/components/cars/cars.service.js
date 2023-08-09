@@ -8,7 +8,7 @@ export function getAllCars() {
 
 export async function getCar(carId) {
   // returns null when no car was found
-  const car = await database.getCar(carId);
+  const car = await database.getCarById(carId);
   if (!car) {
     throw new Error("Invalid car id");
   }
@@ -28,5 +28,9 @@ export async function deleteCar(carId) {
 }
 
 export async function registerCar(plate) {
+  const isPlateAlreadyRegistered = !!(await database.getCarByPlate(plate)); // cast to boolean
+  if (isPlateAlreadyRegistered) {
+    throw new Error("Plate already registered");
+  }
   return database.registerCar(plate);
 }

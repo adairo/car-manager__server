@@ -29,8 +29,12 @@ export async function updateCar(req, res) {
 
 export async function registerCar(req, res) {
   const plate = req.body.plate;
-  const car = await service.registerCar(plate);
-  res.status(201).send(car.toJSON());
+  try {
+    const car = await service.registerCar(plate);
+    res.status(201).send(car.toJSON());
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 export async function deleteCar(req, res) {
