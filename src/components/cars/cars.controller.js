@@ -1,5 +1,6 @@
 // @ts-check
 
+import AppError from "../../lib/appError.js";
 import * as service from "./cars.service.js";
 
 export async function getAllCars(req, res) {
@@ -12,7 +13,11 @@ export async function getCar(req, res) {
     const car = await service.getCar(req.params.carId);
     res.status(200).send(car);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    if (error instanceof AppError) {
+      return res.status(error.httpCode).json({ error: error.message });
+    }
+
+    throw error;
   }
 }
 
@@ -23,7 +28,11 @@ export async function updateCar(req, res) {
     const updatedCar = await service.updateCar(carId, carData);
     res.status(200).send(updatedCar);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    if (error instanceof AppError) {
+      return res.status(error.httpCode).json({ error: error.message });
+    }
+
+    throw error;
   }
 }
 
@@ -33,12 +42,25 @@ export async function registerCar(req, res) {
     const car = await service.registerCar(plate);
     res.status(201).send(car.toJSON());
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error instanceof AppError) {
+      return res.status(error.httpCode).json({ error: error.message });
+    }
+
+    throw error;
   }
 }
 
 export async function deleteCar(req, res) {
   const carId = req.params.carId;
-  await service.deleteCar(carId);
-  res.status(200).end();
+
+  try {
+    await service.deleteCar(carId);
+    res.status(200).end();
+  } catch (error) {
+    if (error instanceof AppError) {
+      return res.status(error.httpCode).json({ error: error.message });
+    }
+
+    throw error;
+  }
 }

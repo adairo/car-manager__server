@@ -23,6 +23,6 @@ export function auth(req, res, next) {
     // here we could save the token payload on the request object
     next();
   } catch (error) {
-    return res.status(403).json({ error: "Invalid credentials" });
+    return res.status(403).json({ error: "Unauthorized" });
   }
 }

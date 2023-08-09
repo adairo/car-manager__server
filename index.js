@@ -18,7 +18,10 @@ const options = {
       title: "Spore-start",
       version: "1.0.0",
     },
-    tags: [{ name: "car", description: "Manage the cars" }],
+    tags: [
+      { name: "car", description: "Manage the cars" },
+      { name: "user", description: "Manage the users' info" },
+    ],
   },
   apis: ["./src/components/**/*.router.js", "./src/components/**/*.model.js"],
 };

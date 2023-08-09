@@ -15,6 +15,9 @@ import { DataTypes } from "sequelize";
  *         plate:
  *           type: string
  *           example: ATHK455
+ *         createdAt:
+ *           type: string
+ *           example: 2023-08-09T17:31:22.182Z
  */
 const CarModel = sequelize.define("Car", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

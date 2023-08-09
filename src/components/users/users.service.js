@@ -1,12 +1,13 @@
 // @ts-check
 
+import AppError from "../../lib/appError.js";
 import { createToken } from "../../lib/auth.js";
 import * as database from "./users.database.js";
 
 export async function registerUser(email, password) {
-  const existentUser = await database.getUserByEmail(email);
+  const existentUser = !!(await database.getUserByEmail(email));
   if (existentUser) {
-    throw new Error("Email already registered");
+    throw new AppError("DuplicatedEmail", 400, "Email already registered");
   }
 
   return database.registerUser({ email, password });
@@ -20,7 +21,7 @@ export async function login(email, password) {
 
   const savedPassword = user.get("password");
   if (password !== savedPassword) {
-    throw new Error("Invalid credentials");
+    throw new AppError("Unauthorized", 400, "Invalid user credentials");
   }
 
   const token = createToken({
