@@ -5,11 +5,13 @@ export function registerCar(plate) {
 }
 
 export function getAllCars() {
-  return CarModel.findAll({ attributes: ["id", "plate"] });
+  return CarModel.findAll({ attributes: ["id", "plate", "position"] });
 }
 
 export function getCarById(carId) {
-  return CarModel.findByPk(carId, { attributes: ["id", "plate", "createdAt"] });
+  return CarModel.findByPk(carId, {
+    attributes: ["id", "plate", "createdAt", "position"],
+  });
 }
 
 export function getCarByPlate(plate) {

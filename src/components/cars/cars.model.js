@@ -18,6 +18,16 @@ import { DataTypes } from "sequelize";
  *         createdAt:
  *           type: string
  *           example: 2023-08-09T17:31:22.182Z
+ *         position:
+ *           type: object
+ *           properties:
+ *             x:
+ *               type: float
+ *               example: 20.710429418405212
+ *             y:
+ *               type: float
+ *               example: -103.40982443626814
+ *
  */
 const CarModel = sequelize.define("Car", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -25,6 +35,11 @@ const CarModel = sequelize.define("Car", {
     type: DataTypes.STRING,
     comment: "Matricula",
     unique: "uniquePlate",
+  },
+  position: {
+    type: "POINT",
+    defaultValue: "(20.710429418405212, -103.40982443626814)",
+    allowNull: false,
   },
 });
 
