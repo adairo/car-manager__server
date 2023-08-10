@@ -89,6 +89,45 @@ carsRouter.get("/:carId", validate(schema.getCar), controller.getCar);
 
 /**
  * @swagger
+ * /cars/{carId}/position:
+ *   put:
+ *     tags:
+ *       - car
+ *     description: Update the position of a car
+ *     summary: Update car position
+ *     operationId: updateCarPosition
+ *     parameters:
+ *       - in: path
+ *         name: carId
+ *         description: id of the car to update its position
+ *         required: true
+ *         schema:
+ *           type: int
+ *           example: 1
+ *       - in: query
+ *         name: lattitude
+ *         description: lattitude
+ *         required: true
+ *         schema:
+ *           type: float
+ *           example: 1.23223
+ *       - in: query
+ *         name: longitude
+ *         description: longitude
+ *         required: true
+ *         schema:
+ *           type: float
+ *           example: 34.544
+ *
+ */
+carsRouter.put(
+  "/:carId/position",
+  validate(schema.updatePosition),
+  controller.updatePosition,
+);
+
+/**
+ * @swagger
  * /cars/{carId}:
  *   patch:
  *     tags:

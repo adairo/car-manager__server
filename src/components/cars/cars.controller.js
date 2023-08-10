@@ -36,6 +36,8 @@ export async function updateCar(req, res) {
   }
 }
 
+export async function updatePosition(req, res) {}
+
 export async function registerCar(req, res) {
   const plate = req.body.plate;
   try {
