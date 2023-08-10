@@ -29,5 +29,5 @@ export async function login(email, password) {
     email: user.get("email"),
   });
 
-  return token;
+  return { token };
 }
