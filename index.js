@@ -3,11 +3,13 @@ import carsRouter from "./src/components/cars/cars.router.js";
 import usersRouter from "./src/components/users/users.router.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import cors from "./src/lib/cors.js";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors("http://localhost:5173"));
 app.use("/cars", carsRouter);
 app.use("/users", usersRouter);
 
