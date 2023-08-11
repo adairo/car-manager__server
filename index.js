@@ -1,8 +1,8 @@
 import express from "express";
 import carsRouter from "./src/components/cars/cars.router.js";
 import usersRouter from "./src/components/users/users.router.js";
-import cors from "./src/lib/cors.js";
 import { auth } from "./src/lib/auth.js";
+import cors from "./src/config/cors.js";
 import openapi from "./src/config/openapi.js";
 
 const app = express();
