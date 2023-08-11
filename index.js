@@ -8,8 +8,8 @@ import openapi from "./src/config/openapi.js";
 const app = express();
 const port = 3000;
 
-app.use(express.json());
 app.use(cors("http://localhost:5173"));
+app.use(express.json());
 app.use("/cars", auth, carsRouter);
 // Don't apply auth middleware to all users routes, (quantum paradox space-time-aware)
 app.use("/users", usersRouter);

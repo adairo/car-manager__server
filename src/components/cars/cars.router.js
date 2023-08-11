@@ -102,21 +102,24 @@ carsRouter.get("/:carId", validate(schema.getCar), controller.getCar);
  *         description: id of the car to update its position
  *         required: true
  *         schema:
- *           type: int
+ *           type: integer
+ *           format: int32
  *           example: 1
  *       - in: query
  *         name: lattitude
  *         description: lattitude
  *         required: true
  *         schema:
- *           type: float
+ *           type: number
+ *           format: float
  *           example: 1.23223
  *       - in: query
  *         name: longitude
  *         description: longitude
  *         required: true
  *         schema:
- *           type: float
+ *           type: number
+ *           format: float
  *           example: 34.544
  *
  */
