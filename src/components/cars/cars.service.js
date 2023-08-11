@@ -22,6 +22,11 @@ export async function updateCar(carId, carData) {
   return database.updateCar(carId, carData);
 }
 
+export async function updatePosition(carId, position) {
+  await getCar(carId);
+  return database.updatePosition(carId, position);
+}
+
 export async function deleteCar(carId) {
   await getCar(carId);
   return database.deleteCar(carId);

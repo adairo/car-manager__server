@@ -26,6 +26,17 @@ export async function updateCar(carId, carData) {
   return updatedCar;
 }
 
+export async function updatePosition(carId, position) {
+  const [_affectedRows, [updatedCar]] = await CarModel.update(
+    { position: `(${position.lattitude}, ${position.longitude})` },
+    {
+      where: { id: carId },
+      returning: ["id", "position"],
+    },
+  );
+  return updatedCar;
+}
+
 export function deleteCar(id) {
   return CarModel.destroy({ where: { id } });
 }

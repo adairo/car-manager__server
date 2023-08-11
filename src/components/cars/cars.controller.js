@@ -1,6 +1,7 @@
 // @ts-check
 
 import AppError from "../../lib/appError.js";
+import { getValidated } from "../../lib/validate.js";
 import * as service from "./cars.service.js";
 
 export async function getAllCars(req, res) {
@@ -36,7 +37,16 @@ export async function updateCar(req, res) {
   }
 }
 
-export async function updatePosition(req, res) {}
+export async function updatePosition(req, res) {
+  const {
+    query: position,
+    params: { carId },
+  } = getValidated(req);
+
+  service.updatePosition(carId, position);
+
+  res.send(position);
+}
 
 export async function registerCar(req, res) {
   const plate = req.body.plate;
