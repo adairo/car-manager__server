@@ -13,10 +13,11 @@ export function verifyToken(token) {
 }
 
 export function auth(req, res, next) {
-  const token = req.headers["authorization"];
-  if (!token) {
+  const tokenHeader = req.headers["authorization"]; // Bearer {token} <-
+  if (!tokenHeader) {
     return res.status(403).json({ error: "Credentials are mandatory" });
   }
+  const [_bearer, token] = tokenHeader.split(" ");
 
   try {
     verifyToken(token);
