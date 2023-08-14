@@ -1,5 +1,6 @@
 // @ts-check
 
+import { getSocketInstance } from "../../config/websockets.js";
 import AppError from "../../lib/appError.js";
 import { getValidated } from "../../lib/validate.js";
 import * as service from "./cars.service.js";
@@ -42,10 +43,23 @@ export async function updatePosition(req, res) {
     query: position,
     params: { carId },
   } = getValidated(req);
+  const socket = getSocketInstance();
 
-  service.updatePosition(carId, position);
+  try {
+    await service.updatePosition(carId, position);
+    socket.emit("cars:position-updated", {
+      carId,
+      position,
+    });
 
-  res.send(position);
+    res.send(position);
+  } catch (error) {
+    if (error instanceof AppError) {
+      return res.status(error.httpCode).json({ error: error.message });
+    }
+
+    throw error;
+  }
 }
 
 export async function registerCar(req, res) {
