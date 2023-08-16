@@ -63,9 +63,9 @@ export async function updatePosition(req, res) {
 }
 
 export async function registerCar(req, res) {
-  const plate = req.body.plate;
+  const { body: payload } = getValidated(req);
   try {
-    const car = await service.registerCar(plate);
+    const car = await service.registerCar(payload);
     res.status(201).send(car.toJSON());
   } catch (error) {
     if (error instanceof AppError) {

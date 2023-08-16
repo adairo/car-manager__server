@@ -32,10 +32,12 @@ export async function deleteCar(carId) {
   return database.deleteCar(carId);
 }
 
-export async function registerCar(plate) {
-  const isPlateAlreadyRegistered = !!(await database.getCarByPlate(plate)); // cast to boolean
+export async function registerCar(payload) {
+  const isPlateAlreadyRegistered = !!(await database.getCarByPlate(
+    payload.plate,
+  )); // cast to boolean
   if (isPlateAlreadyRegistered) {
     throw new AppError("DuplicatedPlate", 400, "Plate already registered");
   }
-  return database.registerCar(plate);
+  return database.registerCar(payload);
 }

@@ -16,6 +16,10 @@ export const deleteCar = z.object({
 export const registerCar = z.object({
   body: z.object({
     plate: z.string(),
+    position: z.object({
+      lattitude: z.number(),
+      longitude: z.number(),
+    }),
   }),
 });
 

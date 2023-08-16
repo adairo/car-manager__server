@@ -1,7 +1,10 @@
 import CarModel from "./cars.model.js";
 
-export function registerCar(plate) {
-  return CarModel.create({ plate }, { returning: true });
+export function registerCar(payload) {
+  return CarModel.create(
+    { ...payload, position: formatPosition(payload.position) },
+    { returning: true },
+  );
 }
 
 export function getAllCars() {
@@ -28,9 +31,13 @@ export async function updateCar(carId, carData) {
   return updatedCar;
 }
 
+function formatPosition(position) {
+  return `(${position.lattitude}, ${position.longitude})`;
+}
+
 export async function updatePosition(carId, position) {
   const [_affectedRows, [updatedCar]] = await CarModel.update(
-    { position: `(${position.lattitude}, ${position.longitude})` },
+    { position: formatPosition(position) },
     {
       where: { id: carId },
       returning: ["id", "position"],
