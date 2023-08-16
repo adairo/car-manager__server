@@ -10,6 +10,7 @@ export function registerCar(payload) {
 export function getAllCars() {
   return CarModel.findAll({
     attributes: ["id", "plate", "position", "createdAt"],
+    order: [["createdAt", "ASC"]],
   });
 }
 
