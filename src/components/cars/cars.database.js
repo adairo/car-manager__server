@@ -1,11 +1,13 @@
 import CarModel from "./cars.model.js";
 
 export function registerCar(plate) {
-  return CarModel.create({ plate }, { returning: ["id"] });
+  return CarModel.create({ plate }, { returning: true });
 }
 
 export function getAllCars() {
-  return CarModel.findAll({ attributes: ["id", "plate", "position"] });
+  return CarModel.findAll({
+    attributes: ["id", "plate", "position", "createdAt"],
+  });
 }
 
 export function getCarById(carId) {
@@ -21,7 +23,7 @@ export function getCarByPlate(plate) {
 export async function updateCar(carId, carData) {
   const [_affectedRows, [updatedCar]] = await CarModel.update(carData, {
     where: { id: carId },
-    returning: ["id", "plate"],
+    returning: true,
   });
   return updatedCar;
 }
