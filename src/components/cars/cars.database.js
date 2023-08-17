@@ -2,7 +2,11 @@ import CarModel from "./cars.model.js";
 
 export function registerCar(payload) {
   return CarModel.create(
-    { ...payload, position: formatPosition(payload.position) },
+    {
+      ...payload,
+      position:
+        "position" in payload ? formatPosition(payload.position) : undefined,
+    },
     { returning: true },
   );
 }
