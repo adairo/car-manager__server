@@ -30,6 +30,6 @@ export async function getPositionsByCarId(carId) {
     where: {
       carId: carId,
     },
-    order: [["timestamp", "ASC"]],
+    order: [["timestamp", "DESC"]],
   });
 }

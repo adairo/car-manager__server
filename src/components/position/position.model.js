@@ -14,7 +14,7 @@ const PositionModel = sequelize.define(
       references: {},
     },
   },
-  { createdAt: "timestamp" },
+  { createdAt: "timestamp", updatedAt: false },
 );
 
 export default PositionModel;
