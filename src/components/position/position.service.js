@@ -1,9 +1,15 @@
+import { getSocketInstance } from "../../config/websockets.js";
 import AppError from "../../lib/appError.js";
 import * as carService from "../cars/cars.service.js";
 import * as database from "./position.database.js";
 
 export async function setCarPosition(carId, position) {
   await carService.getCar(carId);
+  const socket = getSocketInstance();
+  socket.emit("cars:position-updated", {
+    carId,
+    position,
+  });
   await database.setCarCurrentPosition(carId, position);
   return database.addToPositionHistory(carId, position);
 }
