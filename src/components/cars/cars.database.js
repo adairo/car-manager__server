@@ -4,7 +4,7 @@ export function registerCar(payload) {
   return CarModel.create(
     {
       ...payload,
-      position:
+      currentPosition:
         "position" in payload ? formatPosition(payload.position) : undefined,
     },
     { returning: true },
@@ -13,14 +13,14 @@ export function registerCar(payload) {
 
 export function getAllCars() {
   return CarModel.findAll({
-    attributes: ["id", "plate", "position", "createdAt"],
+    attributes: ["id", "plate", "currentPosition", "createdAt"],
     order: [["createdAt", "ASC"]],
   });
 }
 
 export function getCarById(carId) {
   return CarModel.findByPk(carId, {
-    attributes: ["id", "plate", "createdAt", "position"],
+    attributes: ["id", "plate", "createdAt", "currentPosition"],
   });
 }
 

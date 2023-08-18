@@ -1,7 +1,6 @@
-// @ts-check
-
 import AppError from "../../lib/appError.js";
 import * as database from "./cars.database.js";
+import * as positionService from "../position/position.service.js";
 
 export function getAllCars() {
   return database.getAllCars();

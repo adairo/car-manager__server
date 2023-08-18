@@ -18,8 +18,8 @@ export const registerCar = z.object({
     plate: z.string(),
     position: z
       .object({
-        lattitude: z.number(),
-        longitude: z.number(),
+        lattitude: z.coerce.number().min(-90.0).max(90.0),
+        longitude: z.coerce.number().min(-180.0).max(180.0),
       })
       .optional(),
   }),

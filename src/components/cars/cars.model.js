@@ -37,6 +37,11 @@ const CarModel = sequelize.define("Car", {
     comment: "Matricula",
     unique: "uniquePlate",
   },
+  currentPosition: {
+    type: "POINT",
+    defaultValue: "(20.710429418405212, -103.40982443626814)",
+    allowNull: false,
+  },
 });
 
 CarModel.hasMany(PositionModel, {
