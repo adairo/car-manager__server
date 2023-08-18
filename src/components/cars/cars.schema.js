@@ -1,5 +1,6 @@
 // @ts-check
 import { z } from "zod";
+import { positionSchema } from "../position/position.schema.js";
 
 export const getCar = z.object({
   params: z.object({
@@ -16,12 +17,7 @@ export const deleteCar = z.object({
 export const registerCar = z.object({
   body: z.object({
     plate: z.string(),
-    position: z
-      .object({
-        lattitude: z.coerce.number().min(-90.0).max(90.0),
-        longitude: z.coerce.number().min(-180.0).max(180.0),
-      })
-      .optional(),
+    position: positionSchema.optional(),
   }),
 });
 
